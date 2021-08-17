@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wicipe.mapper.UserMapper">
+	<select id="selectUsers" parameterType="UserDTO" resultType="UserDTO">
+  		SELECT * FROM users WHERE id=#{id};
+  	</select>
+  	<select id="selectOrder" parameterType="String" resultType="OrderDTO">
+  		SELECT * FROM orders WHERE user_name=#{name};
+  	</select>
+  	<select id="getUserCount" resultType="int">
+  		SELECT COUNT(*) as cnt FROM users WHERE id=#{id};
+  	</select>
+  	<select id="loginUser" resultType="int">
+  		SELECT COUNT(*) as cnt FROM users WHERE id=#{id} AND phone=#{phone};
+  	</select>
+  	<update id="setUser" parameterType="UserDTO">
+  		UPDATE users SET
+  			address=#{address},
+  			phone=#{phone}
+  		WHERE id=#{id};
+  	</update>
+  	<insert id="addUser" parameterType="UserDTO"> 
+        INSERT INTO users VALUES ((SELECT * from (SELECT IFNULL(MAX(idx)+1, 1) FROM users) AS t), #{id}, #{address}, #{phone}, #{data}, #{dogname});
+    </insert>
+    <insert id="order" parameterType="OrderDTO"> 
+        INSERT INTO orders VALUES ((SELECT * from (SELECT IFNULL(MAX(idx)+1, 1) FROM orders) AS t), #{user_name}, #{recipe_name}, #{state}, #{price}, #{time}, #{tip}, #{time_want}, #{phone}, #{address});
+    </insert>
+    <insert id="evalue" parameterType="EvalueDTO"> 
+        INSERT INTO evalue VALUES (#{recipe_idx}, #{user_idx}, #{star}, #{text});
+    </insert>
+    <insert id="addNewMenu" parameterType="NewMenuDTO"> 
+        INSERT INTO new_menu VALUES ((SELECT * from (SELECT IFNULL(MAX(idx)+1, 1) FROM new_menu) AS t), #{user_name}, #{text}, #{new_menu});
+    </insert>
+    <insert id="survey1" parameterType="Survey1DTO"> 
+        INSERT INTO survey1 VALUES (#{username}, #{dogname}, #{breed}, #{weight}, #{form1}, #{form2}, #{age}, #{age_survey1}, #{age_survey2}, #{isNeutral}, #{gender}, #{pregnant}, #{disease1}, #{disease2}, #{disease3}, #{disease4}, #{disease5}, #{food1}, #{food2}, #{food3}, #{food4}, #{food5}, #{food6}, #{allergy1}, #{allergy2}, #{allergy3}, #{allergy4}, #{allergy5}, #{allergy6}, #{allergy7}, #{tool1}, #{tool2}, #{tool3}, #{tool4}, #{tool5}, #{tool6});
+    </insert>
+    <insert id="survey2" parameterType="Survey2DTO"> 
+        INSERT INTO survey2 VALUES (#{username}, #{q1}, #{q2});
+    </insert>
+    <insert id="survey3" parameterType="Survey3DTO">
+        INSERT INTO survey3 VALUES (#{username}, #{q1}, #{q2}, #{q3});
+    </insert>
+      	<delete id="deleteOrder" parameterType="int">
+  		DELETE FROM orders WHERE idx=#{idx};
+  	</delete>
+</mapper>

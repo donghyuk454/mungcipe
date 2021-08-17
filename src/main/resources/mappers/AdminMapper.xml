@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.wicipe.mapper.RecipeMapper">
+  	<update id="updateOrder" parameterType="OrderDTO">
+  		UPDATE orders SET state=-1 WHERE idx=#{idx};
+  	</update>
+  	<update id="deleteOrder" parameterType="OrderDTO">
+  		UPDATE orders SET state=-1 WHERE idx=#{idx};
+  	</update>
+</mapper>
