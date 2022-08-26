@@ -10,7 +10,7 @@
 
 ## Architecture
 
-  ![image](https://user-images.githubusercontent.com/20418155/172608349-debb44f1-b30f-4ba7-b164-7e0d8eb14d96.png)
+  ![image](https://user-images.githubusercontent.com/20418155/186843924-d0be4682-5265-444e-8f51-b4a179206c84.png)
 
 ## 주요 개발 내용
 
@@ -22,7 +22,7 @@
 
 ## 특징
 
-  - 서버에 MVC 패턴의 RESTful한 API를 제작하였으며, JDBC를 통해 쿼리 작성하였습니다.
+  - 서버에 MVC 패턴의 RESTful한 API를 제작하였으며, mybatis 를 사용하여 mapper 에 쿼리 작성하였습니다.
   - 개발 이슈는 slack을 통해 팀원들과 공유하였습니다.
   - 해당 프로젝트는 서울대 융합과학기술원에서 지원을 받아 제작하였습니다.
   - 약 2개월간 개발하였으며, 테스트 진행 후 서비스 중단하였습니다.
